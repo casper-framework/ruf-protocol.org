@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'RUF Protocol Docs',
-  tagline: 'RUF Protocol Documentation',
+  title: 'Remote User Flows Protocol',
+  tagline: 'A protocol for describing user flows in any platform.',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -41,6 +41,7 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: '/spec',
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -73,17 +74,17 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'RUF Protocol',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'RUF Protocol Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'specSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Specification',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
