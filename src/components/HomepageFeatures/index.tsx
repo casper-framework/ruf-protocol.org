@@ -39,7 +39,7 @@ const FeatureList: FeatureItem[] = [
       <>
         As any architecture, RUF can be implemented by anyone that enjoys and
         see value on it. You can take a look at{" "}
-        <Link to="/spec/alternatives">alternatives</Link>.
+        <Link to="/spec/intro">alternatives</Link>.
       </>
     ),
   },
