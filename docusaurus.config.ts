@@ -11,6 +11,9 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
 
   themes: ['@docusaurus/theme-mermaid'],
@@ -32,7 +35,6 @@ const config: Config = {
   projectName: 'ruf-protocol.org', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -49,26 +51,10 @@ const config: Config = {
         docs: {
           routeBasePath: '/spec',
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/casper-framework/ruf-protocol.org/tree/main/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -92,7 +78,6 @@ const config: Config = {
           position: 'left',
           label: 'Specification',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/casper-framework/ruf-protocol.org',
           label: 'GitHub',
@@ -109,10 +94,6 @@ const config: Config = {
             {
               label: 'Specification',
               to: '/spec/intro',
-            },
-            {
-              label: 'Blog',
-              to: '/blog',
             },
             {
               label: 'GitHub',
