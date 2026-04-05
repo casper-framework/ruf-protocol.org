@@ -1,0 +1,8 @@
+{
+  "label": "Constructs",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "The core building blocks of the RUF protocol. Each construct has a well-defined role in the request/response lifecycle."
+  }
+}

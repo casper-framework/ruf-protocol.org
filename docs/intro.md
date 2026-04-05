@@ -2,46 +2,46 @@
 sidebar_position: 1
 ---
 
-# AAAA Intro
+# Remote User Flows
 
-Let's discover **Docusaurus in less than 5 minutes**.
+RUF (Remote User Flows) is a protocol for building applications where the **server owns the entire user experience** — not just what to render, but how the user interacts with it, how screens transition, and how state evolves over time.
 
-## Getting Started
+## The problem with traditional frontend state
 
-Get started by **creating a new site**.
+Modern frontend applications manage many kinds of state simultaneously:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- **UI state** — which components are visible, loading, or in an error condition
+- **Navigation state** — which screen the user is on and how they got there
+- **Domain state** — user data, cart contents, form values
+- **Interaction state** — which buttons trigger what, when, and with what side effects
 
-### What you'll need
+Managing these independently leads to a familiar class of problems: bugs from inconsistent state across layers, difficulty enforcing business rules on the client, duplicated logic between platforms, and fragile coordination between frontend and backend teams.
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+## How RUF is different from Server-Driven UI
 
-## Generate a new site
+Traditional SDUI (Server-Driven UI) addresses the *rendering* problem: the server describes which components to display and with what data. The client is a generic renderer.
 
-Generate a new Docusaurus site using the **classic template**.
+RUF goes further. In addition to rendering, the server also owns:
 
-The classic template will automatically be added to your project after you run the command:
+- **Interactions** — which actions are available, what they require, and what can go wrong
+- **Navigation** — how screens stack, transition, and relate to each other
+- **State transitions** — the server is the sole authority on how application state changes
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+The client's role is to render faithfully, dispatch user events, and apply optimistic updates for responsiveness — but it never decides what state *means* or how it should change.
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Core principles
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+| Principle | Description |
+|---|---|
+| **Server authoritative** | All state transitions are controlled by the server. The client never mutates state unilaterally. |
+| **Client optimistic** | The client may speculatively apply navigation or component changes before the server responds, but must roll back on rejection. |
+| **Type-safe contracts** | Screens, components, actions, and their payloads are fully typed end-to-end, enforced at authoring time. |
+| **Analytics embedded** | Metrics are part of the protocol, not bolted on. The server instructs the client what to track and when. |
+| **Platform agnostic** | RUF is a protocol, not a library. Any platform that can make HTTP requests and maintain local state can implement it. |
 
-## Start your site
+## Where to go from here
 
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- [Protocol Lifecycle](./protocol/lifecycle) — understand the two-request loop that drives every RUF application
+- [API Contract](./protocol/api-contract) — the exact request and response shapes
+- [Constructs](./protocol/constructs/session) — detailed spec for each protocol building block
+- [Protocol Rules](./protocol/rules) — the mandatory behaviors every implementation must follow

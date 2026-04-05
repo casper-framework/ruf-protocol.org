@@ -1,0 +1,8 @@
+{
+  "label": "Diagrams",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Visual representations of the RUF protocol — state machines and example interaction flows."
+  }
+}

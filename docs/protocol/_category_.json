@@ -1,0 +1,8 @@
+{
+  "label": "Protocol Specification",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "The complete specification for the Remote User Flows protocol — constructs, lifecycle, API contract, and mandatory rules."
+  }
+}

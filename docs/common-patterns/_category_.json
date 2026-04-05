@@ -1,0 +1,8 @@
+{
+  "label": "Common Patterns",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Recommended patterns for common challenges that arise when implementing RUF."
+  }
+}
