@@ -1,0 +1,8 @@
+{
+  "label": "RUF Spec YAML",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "The RUF Spec YAML is an infrastructure-as-code format for describing a complete RUF application — its screens, components, actions, metrics, and session state — in a single source of truth."
+  }
+}
