@@ -12,6 +12,8 @@ A complete, annotated RUF Spec YAML for a small e-commerce application with a ho
 
 ```yaml
 ruf: "1.0"
+versioning: semantic
+current_version: "2.2.0"
 
 # ─────────────────────────────────────────────
 # SessionMeta shape
@@ -284,6 +286,16 @@ screens:
               cvv_label: string
             payload: {}
           - name: HIDDEN
+        # Older clients saw a simpler payment form without CVV
+        versions:
+          "2.1.9":
+            behaviors:
+              - name: VISIBLE
+                locale:
+                  card_number_label: string
+                  expiry_label: string
+                payload: {}
+              - name: HIDDEN
 
     actions:
       - type: PLACE_ORDER
@@ -307,6 +319,19 @@ screens:
               - card_number
               - expiry
               - cvv
+        # Older clients used an in-app browser for payment instead of native checkout
+        versions:
+          "2.1.9":
+            navigates_to:
+              - screen: WEBVIEW
+                transition: RIGHT_TO_LEFT
+                flow:
+                  name: CHECKOUT
+                  behavior: KEEP
+            errors:
+              EB040:
+                type: TOAST
+                severity: ERROR
 
     metrics:
       navigation:

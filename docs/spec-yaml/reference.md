@@ -18,6 +18,33 @@ ruf: "1.0"
 
 ---
 
+## `versioning`
+
+Declares the version format used by the client app. Optional — omit if the application does not use construct versioning.
+
+```yaml
+versioning: semantic   # or: incremental
+```
+
+| Value | Client version format | Example |
+|---|---|---|
+| `semantic` | `MAJOR.MINOR.PATCH+BUILD` | `"2.2.1+5"` |
+| `incremental` | Integer build number | `"42"` |
+
+See [Versioning Formats](../protocol/versioning/versioning-formats) for the full resolution algorithm.
+
+---
+
+## `current_version`
+
+The current version of this application spec. Follows the format declared in `versioning`. Used as documentation and by tooling to identify the `latest` variant.
+
+```yaml
+current_version: "2.2.1"
+```
+
+---
+
 ## `meta`
 
 Defines the shape of [SessionMeta](../protocol/constructs/session-meta) for this application. Uses TypeScript-like type annotations. The shape is application-specific — the protocol does not mandate specific fields.
@@ -338,3 +365,101 @@ payload:
   referrer?: string
   quantity: number
 ```
+
+---
+
+## Versioning
+
+Any component, action, metric, or the `meta` section can declare version-specific variants using a `versions:` map. The top-level definition is always `latest`. See [Versioning Formats](../protocol/versioning/versioning-formats) for how the server resolves which variant to use.
+
+### `versions:` on `meta`
+
+Declares the SessionMeta shape at each historical version, enabling tooling to generate migration updaters. The `version` field is implicit — do not declare it.
+
+```yaml
+meta:
+  token?: string
+  cartCount: number
+  selectedAddress?:
+    id: string
+    label: string
+  versions:
+    "1":
+      token?: string
+      # cartCount and selectedAddress were not present in v1
+    "2":
+      token?: string
+      cartCount: number
+      # selectedAddress was not present in v2
+```
+
+See [SessionMeta Versioning](../protocol/versioning/session-meta-versioning).
+
+### `versions:` on components
+
+```yaml
+- rel: payment_method
+  behaviors:
+    - name: VISIBLE
+      locale:
+        brand_label: string
+      payload:
+        brand: string
+        last4: string
+    - name: HIDDEN
+  versions:
+    "2.1.9":
+      behaviors:
+        - name: VISIBLE
+          locale:
+            card_label: string
+          payload:
+            type: string
+            last4: string
+        - name: HIDDEN
+```
+
+### `versions:` on actions
+
+```yaml
+- type: PLACE_ORDER
+  payload:
+    paymentMethodId: string
+  navigates_to:
+    - screen: ORDER_CONFIRMATION
+      transition: FADE
+      flow:
+        name: CHECKOUT
+        behavior: REPLACE
+  versions:
+    "2.1.9":
+      navigates_to:
+        - screen: WEBVIEW
+          transition: RIGHT_TO_LEFT
+          flow:
+            name: CHECKOUT
+            behavior: KEEP
+```
+
+### `versions:` on metrics
+
+```yaml
+- rel: order_completed
+  type: FIREBASE
+  name: purchase
+  payload:
+    transaction_id: string
+    value: number
+    currency: string
+  versions:
+    "2.1.9":
+      payload:
+        order_id: string
+        total: number
+```
+
+### Semantics
+
+Each entry under `versions:` is a **full redefinition** of the construct — not a partial patch. The server selects exactly one variant per construct per request and does not merge definitions.
+
+See [Constructs Versioning](../protocol/versioning/constructs-versioning) for a complete guide.

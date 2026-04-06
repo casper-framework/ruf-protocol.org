@@ -35,13 +35,16 @@ A project may use a single `app.ruf.yaml` for the entire application, or split i
 Every root `.ruf.yaml` file follows this shape:
 
 ```yaml
-ruf: "1.0"       # Required: spec version
+ruf: "1.0"            # Required: spec version
 
-meta: {}          # Optional: SessionMeta field definitions
+versioning: semantic  # Optional: "semantic" or "incremental"
+current_version: "2.2.1"  # Optional: current app version (follows versioning format)
 
-shared: {}        # Optional: reusable components, actions, metrics
+meta: {}              # Optional: SessionMeta field definitions
 
-screens: {}       # Required: screen definitions
+shared: {}            # Optional: reusable components, actions, metrics
+
+screens: {}           # Required: screen definitions
 ```
 
 The `ruf` field is required and declares which version of the RUF Spec YAML format the file targets.

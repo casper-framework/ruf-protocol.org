@@ -39,6 +39,14 @@ The shape of SessionMeta is defined per application. The protocol does not manda
 
 At minimum, a SessionMeta should contain enough information for the server to reconstruct the full application state from a cold start, including any user authentication tokens, selected context (e.g. current address, store, or tenant), and in-progress flow state.
 
+The protocol reserves one implicit field on every SessionMeta:
+
+| Field | Type | Description |
+|---|---|---|
+| `version` | `number` | Tracks the meta schema version. Managed by the protocol — do not declare it in the spec YAML. |
+
+When the server receives a persisted meta with an outdated `version`, it runs migration updaters to bring it up to the current shape before use. See [SessionMeta Versioning](../versioning/session-meta-versioning).
+
 ## Persistence
 
 The client should persist SessionMeta across app restarts. When the app relaunches, the client may send the saved meta as `previousSessionMeta` in the [/session/create](../api-contract) request, allowing the server to restore the appropriate state and screen.
