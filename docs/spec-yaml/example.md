@@ -211,6 +211,8 @@ screens:
   CART:
     description: Cart review screen — start of the checkout flow
     default_transition: RIGHT_TO_LEFT
+    flows:
+      - CHECKOUT
     components:
       - $ref: '#/shared/components/appbar'
       - $ref: '#/shared/components/cart_quantities'
@@ -261,6 +263,8 @@ screens:
   CHECKOUT:
     description: Final order confirmation and payment screen
     default_transition: RIGHT_TO_LEFT
+    flows:
+      - CHECKOUT
     components:
       - $ref: '#/shared/components/appbar'
       - rel: order_summary

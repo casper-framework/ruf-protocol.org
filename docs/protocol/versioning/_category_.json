@@ -1,6 +1,6 @@
 {
   "label": "Versioning",
-  "position": 4,
+  "position": 5,
   "link": {
     "type": "generated-index",
     "description": "How RUF supports backwards-compatible API contract evolution across the app release lifecycle."

@@ -12,7 +12,7 @@ The Session is the top-level response object returned by both API endpoints. It 
 |---|---|---|
 | `currentScreen` | `string` | The screen the client should display after applying this response |
 | `screens` | `object` | Map of screen name → screen data. Only screens that changed are included. |
-| `navigation` | `object` | Optional [Navigation](./navigation) directive describing how to update the screen stack |
+| `navigation` | `object` | Optional [Navigation](../navigation/overview) directive describing how to update the screen stack |
 | `actionResult` | `object` | Optional [ActionResult](./action#actionresult) describing the outcome of the action |
 | `meta` | `object` | Partial [SessionMeta](./session-meta) patch — only fields that changed |
 | `debug` | `object` | Optional debug and diagnostic information |

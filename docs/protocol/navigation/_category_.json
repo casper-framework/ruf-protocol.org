@@ -1,0 +1,8 @@
+{
+  "label": "Navigation",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "How RUF manages client-side screen stacks through server-issued navigation directives."
+  }
+}

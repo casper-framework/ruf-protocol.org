@@ -85,6 +85,8 @@ The referenced file contains the screen definition directly — not nested under
 # screens/home.ruf.yaml
 description: Main discovery screen
 default_transition: FADE
+flows:
+  - DISCOVERY
 components:
   - rel: skeleton
     behaviors:

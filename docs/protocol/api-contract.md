@@ -117,7 +117,7 @@ Both endpoints return the same Session structure:
 | `screens[name].components` | `object` | Map of `rel` → [Component](./constructs/component) |
 | `screens[name].metrics` | `array` | [Metrics](./constructs/metric) fired on screen load |
 | `screens[name].navigationMetrics` | `array` | [Metrics](./constructs/metric) fired when screen becomes active |
-| `navigation` | `object` | Optional [Navigation](./constructs/navigation) directive |
+| `navigation` | `object` | Optional [Navigation](./navigation/overview) directive |
 | `actionResult` | `object` | Optional [ActionResult](./constructs/action#actionresult) |
 | `meta` | `object` | Partial [SessionMeta](./constructs/session-meta) patch |
 | `debug` | `object` | Optional debug information |

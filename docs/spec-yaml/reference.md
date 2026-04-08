@@ -106,7 +106,8 @@ screens:
 | `description` | No | Human-friendly description for maintainability |
 | `alias` | No | Short human-readable alias |
 | `params` | No | Typed route-level parameters. Passed at navigation time. |
-| `default_transition` | No | Default page animation. See [ScreenTransition](../protocol/constructs/navigation#screen-transitions). |
+| `default_transition` | No | Default page animation. See [Screen Transitions](../protocol/navigation/transitions). |
+| `flows` | No | List of flow names this screen belongs to. See [Flows](../protocol/navigation/flows). |
 | `components` | Yes | List of component definitions or `$ref` entries |
 | `actions` | Yes | List of action definitions or `$ref` entries |
 | `metrics.navigation` | No | [Metrics](../protocol/constructs/metric) fired when this screen becomes active |
@@ -122,6 +123,8 @@ PRODUCT:
     productId: string
     referrer?: string
   default_transition: RIGHT_TO_LEFT
+  flows:
+    - DISCOVERY
   components: [...]
   actions: [...]
   metrics:
